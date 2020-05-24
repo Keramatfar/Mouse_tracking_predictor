@@ -42,12 +42,12 @@ def normalize(data_points,scale_down=True):
 # The predictive model is in here, which is activated only when the corresponding state is enabled.
 def trace_mouse_movements(event,x,y,flags,param):
     if event == cv2.EVENT_MOUSEMOVE:
+        global img
         if(state == 'record_data'):
             cv2.circle(img,(x,y),2,(255,0,0),-1)
             dataset.append([x,y])
         elif(state == 'predict'):
             global model
-            global img
             img.fill(0)
             testing_dataset.append([x,y])
             for [_x,_y] in testing_dataset:
